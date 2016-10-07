@@ -285,6 +285,7 @@ def edge_factory(node_model, child_to_field = "id", parent_to_field = "id", conc
     class Edge(base_model):
         class Meta:
             abstract = not concrete
+            unique_together = ('parent', 'child')
 
         parent = models.ForeignKey(node_model, related_name = "%s_child" % node_model_name, to_field = parent_to_field)
         child = models.ForeignKey(node_model, related_name = "%s_parent" % node_model_name, to_field = child_to_field)
